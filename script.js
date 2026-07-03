@@ -47,7 +47,7 @@
   });
 
   // Fallback: hide after 3 seconds no matter what
-  setTimeout(hidePreloader, 3000);
+  setTimeout(hidePreloader, 1000);
 
   // Prevent scroll while loading
   document.body.style.overflow = 'hidden';
@@ -129,8 +129,8 @@
     // Start cycling after initial entrance animation
     setTimeout(() => {
       isDeleting = true;
-      setTimeout(type, 2000);
-    }, 2000);
+      setTimeout(type, 500);
+    }, 500);
   }
 
   initRoleCycler();
