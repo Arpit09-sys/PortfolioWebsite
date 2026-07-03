@@ -14,12 +14,12 @@
   --text: #f5f5f7;
   --text-dim: #86868b;
   --text-muted: #6e6e73;
-  --accent: #2997ff;
-  --accent-glow: rgba(41, 151, 255, 0.25);
-  --accent-soft: rgba(41, 151, 255, 0.08);
-  --gradient-1: #2997ff;
-  --gradient-2: #a855f7;
-  --gradient-3: #ec4899;
+  --accent: #6D91BE;
+  --accent-glow: rgba(109, 145, 190, 0.25);
+  --accent-soft: rgba(109, 145, 190, 0.08);
+  --gradient-1: #E8EEF5;
+  --gradient-2: #A9C0DC;
+  --gradient-3: #6D91BE;
 
   /* Typography */
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -59,9 +59,12 @@
   --text: #1d1d1f;
   --text-dim: #6e6e73;
   --text-muted: #86868b;
-  --accent: #0071e3;
-  --accent-glow: rgba(0, 113, 227, 0.18);
-  --accent-soft: rgba(0, 113, 227, 0.06);
+  --accent: #2E4A6E;
+  --accent-glow: rgba(46, 74, 110, 0.18);
+  --accent-soft: rgba(46, 74, 110, 0.06);
+  --gradient-1: #0F1F38;
+  --gradient-2: #2E4A6E;
+  --gradient-3: #5A7CA6;
 }
 
 /* ---------- 1. RESET & BASE ---------- */
@@ -537,7 +540,7 @@ ul {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: #2997ff;
+  color: var(--accent);
 }
 
 .hero__subtitle {
@@ -588,7 +591,8 @@ ul {
 }
 
 .btn--primary:hover {
-  background: #0077ed;
+  background: var(--accent);
+  filter: brightness(1.1);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px var(--accent-glow);
 }
