@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap&text=ArpitSharmaHiImASoftwareDevelopmentEngineer"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheet -->
@@ -24,11 +24,23 @@
 
   <!-- ═══ PRELOADER ═══ -->
   <div class="preloader" aria-hidden="true">
-    <div class="preloader__ring"></div>
+    <div class="preloader__content">
+      <div class="preloader__logo">AS</div>
+      <div class="preloader__bar">
+        <div class="preloader__bar-fill"></div>
+      </div>
+      <span class="preloader__text">Loading experience...</span>
+    </div>
   </div>
 
   <!-- ═══ CUSTOM CURSOR ═══ -->
-  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+  </div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+
+  <!-- ═══ FLOATING PARTICLES ═══ -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
   <!-- ═══ MOBILE NAV OVERLAY ═══ -->
   <div class="nav-overlay" aria-hidden="true"></div>
@@ -36,15 +48,18 @@
   <!-- ═══ NAVBAR ═══ -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
-      <a href="#hero" class="navbar__logo" aria-label="Home">AS.</a>
+      <a href="#hero" class="navbar__logo" aria-label="Home">
+        <span class="navbar__logo-text">AS</span>
+        <span class="navbar__logo-dot">.</span>
+      </a>
 
       <div class="navbar__links" id="nav-links">
-        <a href="#about" class="navbar__link">About</a>
-        <a href="#projects" class="navbar__link">Projects</a>
-        <a href="#experience" class="navbar__link">Experience</a>
-        <a href="#profiles" class="navbar__link">Profiles</a>
-        <a href="#contact" class="navbar__link">Contact</a>
-        <button class="theme-toggle" aria-label="Toggle dark/light theme">
+        <a href="#about" class="navbar__link" data-text="About">About</a>
+        <a href="#projects" class="navbar__link" data-text="Projects">Projects</a>
+        <a href="#experience" class="navbar__link" data-text="Experience">Experience</a>
+        <a href="#profiles" class="navbar__link" data-text="Profiles">Profiles</a>
+        <a href="#contact" class="navbar__link" data-text="Contact">Contact</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light theme" id="theme-toggle-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
@@ -62,59 +77,84 @@
 
   <!-- ═══ HERO ═══ -->
   <section class="hero" id="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <div class="hero__bg-orb"></div>
+    <!-- Aurora Background -->
+    <div class="hero__aurora" aria-hidden="true">
+      <div class="hero__aurora-layer hero__aurora-layer--1"></div>
+      <div class="hero__aurora-layer hero__aurora-layer--2"></div>
+      <div class="hero__aurora-layer hero__aurora-layer--3"></div>
     </div>
+    <!-- Mesh Gradient -->
+    <div class="hero__mesh" aria-hidden="true"></div>
+    <!-- Grid Pattern -->
+    <div class="hero__grid" aria-hidden="true"></div>
+    <!-- Noise -->
     <div class="hero__noise" aria-hidden="true"></div>
 
-    <span class="hero__badge">
-      <span class="pulse"></span>
-      Open to opportunities
-    </span>
+    <div class="hero__content">
+      <span class="hero__badge">
+        <span class="hero__badge-pulse"></span>
+        <span class="hero__badge-text">Open to opportunities</span>
+      </span>
 
-    <h1 class="hero__title">
-      <span data-animate-chars>Hi, I'm </span><br />
-      <span data-animate-chars class="gradient-text">Arpit Sharma</span>
-    </h1>
+      <h1 class="hero__title">
+        <span class="hero__title-line" data-animate-chars>Hi, I'm </span><br />
+        <span class="hero__title-line gradient-text" data-animate-chars>Arpit Sharma</span>
+      </h1>
 
-    <!-- Animated role text -->
-    <div class="hero__role" aria-label="Roles">
-      <span class="hero__role-text" id="hero-role">Aspiring Software Development Engineer</span>
-      <span class="hero__role-cursor" aria-hidden="true">|</span>
-    </div>
+      <!-- Animated role text -->
+      <div class="hero__role" aria-label="Roles">
+        <span class="hero__role-bracket">&lt;</span>
+        <span class="hero__role-text" id="hero-role">Aspiring Software Development Engineer</span>
+        <span class="hero__role-bracket">/&gt;</span>
+        <span class="hero__role-cursor" aria-hidden="true"></span>
+      </div>
 
-    <p class="hero__subtitle">
-      Computer Science student with a strong interest in Software Development, Full Stack Web Development, Data
-      Structures &amp; Algorithms, and Artificial Intelligence. I build scalable applications, solve real-world
-      problems, and stay hands-on with modern technologies — all while preparing for Software Engineering roles.
-    </p>
+      <p class="hero__subtitle">
+        Computer Science student with a strong interest in Software Development, Full Stack Web Development, Data
+        Structures &amp; Algorithms, and Artificial Intelligence. I build scalable applications, solve real-world
+        problems, and stay hands-on with modern technologies — all while preparing for Software Engineering roles.
+      </p>
 
-    <div class="hero__cta-group">
-      <a href="#projects" class="btn btn--primary">
-        View my work
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
-      <a href="#contact" class="btn btn--ghost">
-        Get in touch
-      </a>
+      <div class="hero__cta-group">
+        <a href="#projects" class="btn btn--primary" id="hero-cta-projects">
+          <span class="btn__text">View my work</span>
+          <span class="btn__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+          <span class="btn__glow"></span>
+        </a>
+        <a href="#contact" class="btn btn--ghost" id="hero-cta-contact">
+          <span class="btn__text">Get in touch</span>
+          <span class="btn__glow"></span>
+        </a>
+      </div>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
-      <span class="hero__scroll-text">Scroll</span>
-      <div class="hero__scroll-line"></div>
+      <div class="hero__scroll-mouse">
+        <div class="hero__scroll-wheel"></div>
+      </div>
+      <span class="hero__scroll-text">Scroll down</span>
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider">
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══ ABOUT ═══ -->
   <section class="about section-transition" id="about">
     <div class="container">
-      <span class="section-label reveal">About Me</span>
-      <h2 class="section-title reveal">Passionate about code,<br />driven by curiosity.</h2>
+      <div class="section-header">
+        <span class="section-label reveal">
+          <span class="section-label__line"></span>
+          About Me
+        </span>
+        <h2 class="section-title reveal">Passionate about code,<br />driven by curiosity.</h2>
+      </div>
 
       <div class="about__grid">
         <!-- Bio -->
@@ -139,7 +179,7 @@
           </p>
 
           <!-- Education Card -->
-          <div class="education-card">
+          <div class="education-card glass-card">
             <div class="education-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -159,15 +199,15 @@
 
           <!-- Stats -->
           <div class="about__stats stagger-children">
-            <div class="stat">
+            <div class="stat glass-card">
               <div class="stat__number" data-count="8" data-suffix=".11">0</div>
               <div class="stat__label">CGPA</div>
             </div>
-            <div class="stat">
+            <div class="stat glass-card">
               <div class="stat__number" data-count="5" data-suffix="+">0</div>
               <div class="stat__label">Projects</div>
             </div>
-            <div class="stat">
+            <div class="stat glass-card">
               <div class="stat__number" data-count="4" data-suffix="th">0</div>
               <div class="stat__label">Year</div>
             </div>
@@ -175,39 +215,30 @@
         </div>
 
         <!-- Skills -->
-        <div class="reveal-right">
-          <h3 class="skills__title">Skills &amp; Technologies</h3>
+        <div class="about__skills reveal-right">
+          <h3 class="skills__title">
+            <span class="skills__title-icon">⚡</span>
+            Skills & Technologies
+          </h3>
 
           <!-- Programming Languages -->
           <div class="skills__category">
             <span class="skills__category-label">Programming Languages</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="3" />
-                  <path
-                    d="M12 2v4m0 12v4m-7.07-15.07l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" />
-                </svg>
+              <span class="skill-tag" data-skill="java">
+                <span class="skill-tag__icon">☕</span>
                 Java
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-                </svg>
+              <span class="skill-tag" data-skill="c">
+                <span class="skill-tag__icon">⚙️</span>
                 C
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+              <span class="skill-tag" data-skill="js">
+                <span class="skill-tag__icon">✨</span>
                 JavaScript
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7" />
-                  <ellipse cx="12" cy="7" rx="8" ry="4" />
-                </svg>
+              <span class="skill-tag" data-skill="sql">
+                <span class="skill-tag__icon">🗃️</span>
                 SQL
               </span>
             </div>
@@ -217,25 +248,16 @@
           <div class="skills__category">
             <span class="skills__category-label">Frontend</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
-                  <path d="M8 10l4 4 4-4" />
-                </svg>
+              <span class="skill-tag" data-skill="html">
+                <span class="skill-tag__icon">🌐</span>
                 HTML5
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16v16H4z" />
-                  <path d="M8 8h8v8H8z" />
-                </svg>
+              <span class="skill-tag" data-skill="css">
+                <span class="skill-tag__icon">🎨</span>
                 CSS3
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+              <span class="skill-tag" data-skill="javascript">
+                <span class="skill-tag__icon">⚡</span>
                 JavaScript
               </span>
             </div>
@@ -245,11 +267,8 @@
           <div class="skills__category">
             <span class="skills__category-label">Backend</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <path d="M8 21h8m-4-4v4" />
-                </svg>
+              <span class="skill-tag" data-skill="node">
+                <span class="skill-tag__icon">🟢</span>
                 Node.js
               </span>
             </div>
@@ -259,19 +278,12 @@
           <div class="skills__category">
             <span class="skills__category-label">Database</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7" />
-                  <ellipse cx="12" cy="7" rx="8" ry="4" />
-                  <path d="M4 12c0 2.21 3.58 4 8 4s8-1.79 8-4" />
-                </svg>
+              <span class="skill-tag" data-skill="mongodb">
+                <span class="skill-tag__icon">🍃</span>
                 MongoDB
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7" />
-                  <ellipse cx="12" cy="7" rx="8" ry="4" />
-                </svg>
+              <span class="skill-tag" data-skill="sql-db">
+                <span class="skill-tag__icon">🗄️</span>
                 SQL
               </span>
             </div>
@@ -281,38 +293,24 @@
           <div class="skills__category">
             <span class="skills__category-label">Developer Tools</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4" />
-                </svg>
+              <span class="skill-tag" data-skill="git">
+                <span class="skill-tag__icon">🔀</span>
                 Git
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                </svg>
+              <span class="skill-tag" data-skill="github">
+                <span class="skill-tag__icon">🐙</span>
                 GitHub
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <path d="M8 21h8m-4-4v4" />
-                </svg>
+              <span class="skill-tag" data-skill="vscode">
+                <span class="skill-tag__icon">💻</span>
                 VS Code
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
+              <span class="skill-tag" data-skill="intellij">
+                <span class="skill-tag__icon">🧠</span>
                 IntelliJ IDEA
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                </svg>
+              <span class="skill-tag" data-skill="docker">
+                <span class="skill-tag__icon">🐳</span>
                 Docker
               </span>
             </div>
@@ -322,45 +320,28 @@
           <div class="skills__category">
             <span class="skills__category-label">Core Subjects</span>
             <div class="skills__grid stagger-children">
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-                </svg>
+              <span class="skill-tag" data-skill="ds">
+                <span class="skill-tag__icon">📊</span>
                 Data Structures
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                </svg>
+              <span class="skill-tag" data-skill="algo">
+                <span class="skill-tag__icon">🧮</span>
                 Algorithms
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                </svg>
+              <span class="skill-tag" data-skill="oop">
+                <span class="skill-tag__icon">🏗️</span>
                 OOP
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7" />
-                  <ellipse cx="12" cy="7" rx="8" ry="4" />
-                  <path d="M4 12c0 2.21 3.58 4 8 4s8-1.79 8-4" />
-                </svg>
+              <span class="skill-tag" data-skill="dbms">
+                <span class="skill-tag__icon">💾</span>
                 DBMS
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <path d="M8 21h8m-4-4v4" />
-                </svg>
+              <span class="skill-tag" data-skill="os">
+                <span class="skill-tag__icon">🖥️</span>
                 Operating Systems
               </span>
-              <span class="skill-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+              <span class="skill-tag" data-skill="cn">
+                <span class="skill-tag__icon">🌐</span>
                 Computer Networks
               </span>
             </div>
@@ -370,95 +351,123 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider">
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══ PROJECTS ═══ -->
   <section class="projects section-transition" id="projects">
     <div class="container">
-      <span class="section-label reveal">Projects</span>
-      <h2 class="section-title reveal">Selected work I'm <br />proud of.</h2>
-      <p class="section-desc reveal">A curated collection of projects that showcase my skills in full-stack development,
-        system design, and creative problem-solving. More details coming soon.</p>
+      <div class="section-header">
+        <span class="section-label reveal">
+          <span class="section-label__line"></span>
+          Projects
+        </span>
+        <h2 class="section-title reveal">Selected work I'm <br />proud of.</h2>
+        <p class="section-desc reveal">A curated collection of projects that showcase my skills in full-stack
+          development, system design, and creative problem-solving.</p>
+      </div>
 
       <div class="projects__grid">
 
         <!-- Project 1 -->
-        <div class="project-card reveal">
-          <div class="project-card__number">01</div>
-          <h3 class="project-card__title">Smart Parking Management System</h3>
-          <p class="project-card__desc">
-            A full-stack smart parking management platform that enables users to locate, reserve, and manage parking spaces efficiently. The system includes secure user authentication, real-time parking slot availability, booking management, payment workflow, and an intuitive dashboard for both users and administrators. Built with a scalable architecture focusing on performance, usability, and clean API design.
-          </p>
-          <div class="project-card__tags">
-            <span class="project-card__tag">React</span>
-            <span class="project-card__tag">Node.js</span>
-            <span class="project-card__tag">Express.js</span>
-            <span class="project-card__tag">MySQL</span>
-            <span class="project-card__tag">REST API</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/Arpit09-sys/Smart-Parking-Management-System" target="_blank" rel="noopener noreferrer"
-              class="project-card__link" aria-label="View GitHub repository">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-              </svg>
-              GitHub
-            </a>
+        <div class="project-card holo-card reveal" data-tilt>
+          <div class="project-card__glow"></div>
+          <div class="project-card__border"></div>
+          <div class="project-card__content">
+            <div class="project-card__header">
+              <div class="project-card__number">01</div>
+              <div class="project-card__links">
+                <a href="https://github.com/Arpit09-sys/Smart-Parking-Management-System" target="_blank"
+                  rel="noopener noreferrer" class="project-card__link" aria-label="View GitHub repository">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-card__title">Smart Parking Management System</h3>
+            <p class="project-card__desc">
+              A full-stack smart parking management platform that enables users to locate, reserve, and manage parking
+              spaces efficiently. Includes secure authentication, real-time availability, booking management, payment
+              workflow, and an intuitive dashboard for both users and admins.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">React</span>
+              <span class="project-card__tag">Node.js</span>
+              <span class="project-card__tag">Express.js</span>
+              <span class="project-card__tag">MySQL</span>
+              <span class="project-card__tag">REST API</span>
+            </div>
           </div>
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card reveal">
-          <div class="project-card__number">02</div>
-          <h3 class="project-card__title">Video Processing Platform</h3>
-          <p class="project-card__desc">
-            A distributed video processing platform designed to automate video upload, transcoding, and processing workflows. The application leverages asynchronous job queues and scalable backend services to process large media files efficiently. The architecture is optimized for reliability, scalability, and high-performance media processing.
-          </p>
-          <div class="project-card__tags">
-            <span class="project-card__tag">React</span>
-            <span class="project-card__tag">Spring Boot</span>
-            <span class="project-card__tag">RabbitMQ</span>
-            <span class="project-card__tag">FFmpeg</span>
-            <span class="project-card__tag">Docker</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/Arpit09-sys/Video-Processing-Project" target="_blank" rel="noopener noreferrer"
-              class="project-card__link" aria-label="View GitHub repository">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-              </svg>
-              GitHub
-            </a>
+        <div class="project-card holo-card reveal" data-tilt>
+          <div class="project-card__glow"></div>
+          <div class="project-card__border"></div>
+          <div class="project-card__content">
+            <div class="project-card__header">
+              <div class="project-card__number">02</div>
+              <div class="project-card__links">
+                <a href="https://github.com/Arpit09-sys/Video-Processing-Project" target="_blank"
+                  rel="noopener noreferrer" class="project-card__link" aria-label="View GitHub repository">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-card__title">Video Processing Platform</h3>
+            <p class="project-card__desc">
+              A distributed video processing platform designed to automate video upload, transcoding, and processing
+              workflows. Leverages asynchronous job queues and scalable backend services optimized for reliability and
+              high-performance media processing.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">React</span>
+              <span class="project-card__tag">Spring Boot</span>
+              <span class="project-card__tag">RabbitMQ</span>
+              <span class="project-card__tag">FFmpeg</span>
+              <span class="project-card__tag">Docker</span>
+            </div>
           </div>
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card reveal">
-          <div class="project-card__number">03</div>
-          <h3 class="project-card__title">Developer Portfolio Website</h3>
-          <p class="project-card__desc">
-            A modern Apple-inspired personal portfolio built to showcase my projects, technical skills, and professional profile. The website features smooth animations, responsive layouts, dark/light theme support, interactive sections, and a clean minimal design focused on performance and user experience.
-          </p>
-          <div class="project-card__tags">
-            <span class="project-card__tag">HTML</span>
-            <span class="project-card__tag">CSS</span>
-            <span class="project-card__tag">JavaScript</span>
-            <span class="project-card__tag">Vercel</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/Arpit09-sys/PortfolioWebsite" target="_blank" rel="noopener noreferrer"
-              class="project-card__link" aria-label="View GitHub repository">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-              </svg>
-              GitHub
-            </a>
+        <div class="project-card holo-card reveal" data-tilt>
+          <div class="project-card__glow"></div>
+          <div class="project-card__border"></div>
+          <div class="project-card__content">
+            <div class="project-card__header">
+              <div class="project-card__number">03</div>
+              <div class="project-card__links">
+                <a href="https://github.com/Arpit09-sys/PortfolioWebsite" target="_blank" rel="noopener noreferrer"
+                  class="project-card__link" aria-label="View GitHub repository">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-card__title">Developer Portfolio Website</h3>
+            <p class="project-card__desc">
+              A modern personal portfolio built to showcase projects, technical skills, and professional profile.
+              Features smooth animations, responsive layouts, dark/light theme support, interactive sections, and a
+              clean minimal design focused on performance and UX.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">HTML</span>
+              <span class="project-card__tag">CSS</span>
+              <span class="project-card__tag">JavaScript</span>
+              <span class="project-card__tag">Vercel</span>
+            </div>
           </div>
         </div>
 
@@ -466,16 +475,23 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider">
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══ EXPERIENCE ═══ -->
   <section class="experience section-transition" id="experience">
     <div class="container">
-      <span class="section-label reveal">Experience</span>
-      <h2 class="section-title reveal">Currently Seeking<br />Opportunities</h2>
+      <div class="section-header">
+        <span class="section-label reveal">
+          <span class="section-label__line"></span>
+          Experience
+        </span>
+        <h2 class="section-title reveal">Currently Seeking<br />Opportunities</h2>
+      </div>
 
-      <div class="experience__seeking reveal">
-        <div class="experience__seeking-icon" aria-hidden="true">
+      <div class="experience__seeking glass-card reveal">
+        <div class="experience__seeking-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" />
@@ -494,12 +510,15 @@
           <span class="project-card__tag">SDE Roles</span>
           <span class="project-card__tag">Remote / On-Site</span>
         </div>
-        <a href="#contact" class="btn btn--primary" style="margin-top: 1.5rem;">
-          Let's Connect
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
+        <a href="#contact" class="btn btn--primary" style="margin-top: 1.5rem;" id="experience-cta">
+          <span class="btn__text">Let's Connect</span>
+          <span class="btn__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+          <span class="btn__glow"></span>
         </a>
       </div>
 
@@ -508,31 +527,42 @@
         <div class="timeline__progress"></div>
 
         <div class="timeline__item reveal">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">2023 — 2027 (Expected)</div>
-          <div class="timeline__role">B.Tech in Computer Science &amp; Engineering</div>
-          <div class="timeline__company">DIT University, Dehradun · CGPA: 8.11</div>
-          <p class="timeline__desc">
-            Coursework in Data Structures, Algorithms, Operating Systems, DBMS, Computer Networks, and Object-Oriented
-            Programming. Actively building projects and solving competitive programming problems.
-          </p>
+          <div class="timeline__dot">
+            <div class="timeline__dot-ping"></div>
+          </div>
+          <div class="timeline__content glass-card">
+            <div class="timeline__date">2023 — 2027 (Expected)</div>
+            <div class="timeline__role">B.Tech in Computer Science &amp; Engineering</div>
+            <div class="timeline__company">DIT University, Dehradun · CGPA: 8.11</div>
+            <p class="timeline__desc">
+              Coursework in Data Structures, Algorithms, Operating Systems, DBMS, Computer Networks, and Object-Oriented
+              Programming. Actively building projects and solving competitive programming problems.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider">
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══ CODING PROFILES ═══ -->
   <section class="profiles section-transition" id="profiles">
     <div class="container">
-      <span class="section-label reveal">Coding Profiles</span>
-      <h2 class="section-title reveal">Where I solve &amp;<br />build things.</h2>
+      <div class="section-header">
+        <span class="section-label reveal">
+          <span class="section-label__line"></span>
+          Coding Profiles
+        </span>
+        <h2 class="section-title reveal">Where I solve &amp;<br />build things.</h2>
+      </div>
 
       <div class="profiles__grid stagger-children">
         <!-- LeetCode -->
-        <a href="https://leetcode.com/u/arpitsharmaa09/" target="_blank" rel="noopener noreferrer" class="profile-card"
-          aria-label="Visit LeetCode profile">
+        <a href="https://leetcode.com/u/arpitsharmaa09/" target="_blank" rel="noopener noreferrer"
+          class="profile-card glass-card" aria-label="Visit LeetCode profile" id="profile-leetcode">
           <div class="profile-card__icon profile-card__icon--leetcode">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -553,8 +583,8 @@
         </a>
 
         <!-- GitHub -->
-        <a href="https://github.com/Arpit09-sys" target="_blank" rel="noopener noreferrer" class="profile-card"
-          aria-label="View GitHub profile">
+        <a href="https://github.com/Arpit09-sys" target="_blank" rel="noopener noreferrer"
+          class="profile-card glass-card" aria-label="View GitHub profile" id="profile-github">
           <div class="profile-card__icon profile-card__icon--github">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -576,7 +606,7 @@
 
         <!-- LinkedIn -->
         <a href="http://linkedin.com/in/arpit-sharma-9a8586289" target="_blank" rel="noopener noreferrer"
-          class="profile-card" aria-label="Connect on LinkedIn">
+          class="profile-card glass-card" aria-label="Connect on LinkedIn" id="profile-linkedin">
           <div class="profile-card__icon profile-card__icon--linkedin">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -599,20 +629,28 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider">
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══ CONTACT ═══ -->
   <section class="contact section-transition" id="contact">
     <div class="container">
-      <span class="section-label reveal">Contact</span>
-      <h2 class="section-title reveal">Let's build something <br />together.</h2>
-      <p class="section-desc reveal">
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-      </p>
+      <div class="section-header" style="text-align: center;">
+        <span class="section-label reveal" style="justify-content: center;">
+          <span class="section-label__line"></span>
+          Contact
+        </span>
+        <h2 class="section-title reveal" style="text-align: center;">Let's build something <br />together.</h2>
+        <p class="section-desc reveal" style="margin: 0 auto 3rem; text-align: center;">
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        </p>
+      </div>
 
       <!-- Contact Cards -->
       <div class="contact__links stagger-children">
-        <a href="mailto:arpitsharma.asuc@gmail.com" class="contact__link" aria-label="Send email">
+        <a href="mailto:arpitsharma.asuc@gmail.com" class="contact__link glass-card" aria-label="Send email"
+          id="contact-email-card">
           <div class="contact__link-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
@@ -624,10 +662,10 @@
           <span class="contact__link-value">arpitsharma.asuc@gmail.com</span>
         </a>
 
-        <a href="https://github.com/Arpit09-sys" target="_blank" rel="noopener noreferrer" class="contact__link"
-          aria-label="View GitHub profile">
+        <a href="https://github.com/Arpit09-sys" target="_blank" rel="noopener noreferrer"
+          class="contact__link glass-card" aria-label="View GitHub profile" id="contact-github-card">
           <div class="contact__link-icon">
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
@@ -637,9 +675,9 @@
         </a>
 
         <a href="http://linkedin.com/in/arpit-sharma-9a8586289" target="_blank" rel="noopener noreferrer"
-          class="contact__link" aria-label="Connect on LinkedIn">
+          class="contact__link glass-card" aria-label="Connect on LinkedIn" id="contact-linkedin-card">
           <div class="contact__link-icon">
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
@@ -648,10 +686,10 @@
           <span class="contact__link-value">Arpit Sharma</span>
         </a>
 
-        <a href="https://leetcode.com/u/arpitsharmaa09/" target="_blank" rel="noopener noreferrer" class="contact__link"
-          aria-label="Visit LeetCode profile">
+        <a href="https://leetcode.com/u/arpitsharmaa09/" target="_blank" rel="noopener noreferrer"
+          class="contact__link glass-card" aria-label="Visit LeetCode profile" id="contact-leetcode-card">
           <div class="contact__link-icon">
-            <svg viewBox="0 0 24 24" fill="var(--accent)">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="fill: var(--accent);">
               <path
                 d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414 0-1.955a1.378 1.378 0 00-1.951 0l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0zm-2.866 12.815a1.38 1.38 0 00-1.38 1.382 1.38 1.38 0 001.38 1.382H20.79a1.38 1.38 0 001.38-1.382 1.38 1.38 0 00-1.38-1.382z" />
             </svg>
@@ -662,22 +700,34 @@
       </div>
 
       <!-- Contact Form -->
-      <form class="contact__form reveal" id="contact-form" aria-label="Contact form">
+      <form class="contact__form glass-card reveal" id="contact-form" aria-label="Contact form">
         <div class="contact__form-row">
-          <input type="text" name="name" class="contact__input" placeholder="Your name" required aria-label="Your name"
-            id="contact-name" />
-          <input type="email" name="email" class="contact__input" placeholder="Your email" required
-            aria-label="Your email" id="contact-email" />
+          <div class="contact__input-group">
+            <input type="text" name="name" class="contact__input" placeholder=" " required aria-label="Your name"
+              id="contact-name" />
+            <label class="contact__input-label" for="contact-name">Your name</label>
+          </div>
+          <div class="contact__input-group">
+            <input type="email" name="email" class="contact__input" placeholder=" " required aria-label="Your email"
+              id="contact-email" />
+            <label class="contact__input-label" for="contact-email">Your email</label>
+          </div>
         </div>
-        <textarea name="message" class="contact__textarea" placeholder="Your message..." required
-          aria-label="Your message" id="contact-message"></textarea>
-        <button type="submit" class="btn btn--primary" style="align-self: center;">
-          Send Message
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13" />
-            <polygon points="22 2 15 22 11 13 2 9 22 2" />
-          </svg>
+        <div class="contact__input-group">
+          <textarea name="message" class="contact__textarea" placeholder=" " required aria-label="Your message"
+            id="contact-message"></textarea>
+          <label class="contact__input-label" for="contact-message">Your message...</label>
+        </div>
+        <button type="submit" class="btn btn--primary" style="align-self: center;" id="contact-submit-btn">
+          <span class="btn__text">Send Message</span>
+          <span class="btn__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </span>
+          <span class="btn__glow"></span>
         </button>
       </form>
     </div>
@@ -695,7 +745,7 @@
       <div class="footer__socials">
         <!-- GitHub -->
         <a href="https://github.com/Arpit09-sys" target="_blank" rel="noopener noreferrer" class="footer__social"
-          aria-label="GitHub">
+          aria-label="GitHub" id="footer-github">
           <svg viewBox="0 0 24 24">
             <path
               d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -703,14 +753,14 @@
         </a>
         <!-- LinkedIn -->
         <a href="http://linkedin.com/in/arpit-sharma-9a8586289" target="_blank" rel="noopener noreferrer"
-          class="footer__social" aria-label="LinkedIn">
+          class="footer__social" aria-label="LinkedIn" id="footer-linkedin">
           <svg viewBox="0 0 24 24">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
         </a>
         <!-- Email -->
-        <a href="mailto:arpitsharma.asuc@gmail.com" class="footer__social" aria-label="Email">
+        <a href="mailto:arpitsharma.asuc@gmail.com" class="footer__social" aria-label="Email" id="footer-email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -719,7 +769,7 @@
         </a>
         <!-- LeetCode -->
         <a href="https://leetcode.com/u/arpitsharmaa09/" target="_blank" rel="noopener noreferrer"
-          class="footer__social" aria-label="LeetCode">
+          class="footer__social" aria-label="LeetCode" id="footer-leetcode">
           <svg viewBox="0 0 24 24">
             <path
               d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414 0-1.955a1.378 1.378 0 00-1.951 0l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0zm-2.866 12.815a1.38 1.38 0 00-1.38 1.382 1.38 1.38 0 001.38 1.382H20.79a1.38 1.38 0 001.38-1.382 1.38 1.38 0 00-1.38-1.382z" />
