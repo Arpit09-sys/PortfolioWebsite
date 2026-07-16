@@ -641,8 +641,6 @@ ul { list-style: none; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 200%;
-  animation: gradientShift 6s ease infinite;
 }
 
 /* Hero Role with Code Syntax Look */
