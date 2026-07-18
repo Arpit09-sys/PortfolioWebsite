@@ -71,32 +71,7 @@
     });
   });
 
-  // ── 4. Theme toggle ──
-  var themeToggle = document.getElementById('theme-toggle-btn');
-  var sunPath = 'M12 3v1m0 16v1m-8-9H3m18 0h-1m-2.636-5.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z';
-  var moonPath = 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z';
-
-  function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-
-    var path = themeToggle ? themeToggle.querySelector('svg path') : null;
-    if (path) {
-      path.setAttribute('d', theme === 'dark' ? moonPath : sunPath);
-    }
-  }
-
-  var savedTheme = localStorage.getItem('theme') || 'dark';
-  setTheme(savedTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var current = document.documentElement.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  }
-
-  // ── 5. Typing effect for hero role ──
+  // ── 4. Typing effect for hero role ──
   var roleEl = document.getElementById('hero-role');
 
   if (roleEl) {
@@ -145,7 +120,7 @@
     }, 1500);
   }
 
-  // ── 6. Smooth scrolling for anchor links ──
+  // ── 5. Smooth scrolling for anchor links ──
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -159,7 +134,7 @@
     });
   });
 
-  // ── 7. Contact form — mailto ──
+  // ── 6. Contact form — mailto ──
   var contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
@@ -178,7 +153,7 @@
     });
   }
 
-  // ── 8. Footer year ──
+  // ── 7. Footer year ──
   var yearEl = document.querySelector('.footer-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
