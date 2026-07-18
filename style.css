@@ -169,38 +169,38 @@ section {
 
 /* ---------- Hero ---------- */
 .hero {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  padding: calc(var(--nav-height) + 40px) 20px 60px;
+  padding: calc(var(--nav-height) + 48px) 20px 56px;
 }
 
-.hero-content {
+.hero-inner {
   max-width: var(--max-width);
-  width: 100%;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 48px;
+  align-items: start;
 }
 
 .hero-name {
-  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 700;
   color: var(--text);
-  line-height: 1.25;
+  line-height: 1.2;
   margin-bottom: 6px;
 }
 
 .hero-role {
-  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   color: var(--accent);
   font-weight: 500;
   margin-bottom: 16px;
-  min-height: 1.6em;
+  min-height: 1.4em;
 }
 
 .typing-cursor {
   display: inline-block;
   width: 2px;
-  height: 1.1em;
+  height: 1em;
   background: var(--accent);
   vertical-align: text-bottom;
   margin-left: 1px;
@@ -213,9 +213,8 @@ section {
 }
 
 .hero-desc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  max-width: 560px;
   line-height: 1.7;
   margin-bottom: 24px;
 }
@@ -224,6 +223,71 @@ section {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+/* Hero Sidebar */
+.hero-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.hero-info-card {
+  padding: 14px 16px;
+  border-left: 3px solid var(--border);
+}
+
+.hero-info-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.hero-info-degree {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.hero-info-school {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.hero-info-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.hero-info-meta strong {
+  color: var(--accent);
+}
+
+.hero-profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-profile-links a {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.hero-profile-links a:hover {
+  text-decoration: underline;
+}
+
+.hero-info-status {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* ---------- Buttons ---------- */
@@ -803,6 +867,11 @@ section {
     min-height: auto;
     padding-top: calc(var(--nav-height) + 32px);
     padding-bottom: 48px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
