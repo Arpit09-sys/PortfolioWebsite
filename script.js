@@ -134,16 +134,29 @@
     });
   });
 
+  // ── 6. Contact form — mailto ──
+  var contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name = contactForm.querySelector('[name="name"]').value || '';
+      var email = contactForm.querySelector('[name="email"]').value || '';
+      var message = contactForm.querySelector('[name="message"]').value || '';
+
+      var subject = 'Portfolio Contact from ' + encodeURIComponent(name);
+      var body = encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message);
+      var mailtoLink = 'mailto:arpitsharma.asuc@gmail.com?subject=' + subject + '&body=' + body;
+
+      window.location.href = mailtoLink;
+    });
+  }
 
   // ── 7. Footer year ──
   var yearEl = document.querySelector('.footer-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-
-  // ── 7. Console Easter Egg ──
-  console.log("%cHello there!", "font-weight: bold; font-size: 20px; color: #1a73e8;");
-  console.log("I see you're inspecting the code! I'm Arpit, a CSE student who loves building things.");
-  console.log("If you like what you see, feel free to reach out to me.");
 
 })();
